@@ -7,7 +7,7 @@ import './App.css'
 import Products from './components/Products'
 import Cart from './components/Cart'
 import RootLayout from './layout/RootLayout'
-import { CartProvider } from './context/CartContext';
+import { CartProvider } from './contexts/CartContext';
 
 const router = createBrowserRouter([
   {

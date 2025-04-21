@@ -1,9 +1,10 @@
-import { useEffect, useState, useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { useEffect, useState } from 'react';
+import { useCart } from '../hooks/useCart'
+
 
 const Produkty = () => {
     const [products, setProducts] = useState([]);
-    const { addToCart } = useContext(CartContext);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         fetch('http://localhost:1323/products')

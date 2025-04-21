@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { useCart } from '../hooks/useCart'
 
 import Payment from './Payment'
 
 const Cart = () => {
-    const { cartItems, removeFromCart } = useContext(CartContext);
+    const { cartItems, removeFromCart } = useCart();
 
     return (
         <>

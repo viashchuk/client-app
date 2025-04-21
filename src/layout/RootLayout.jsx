@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../contexts/CartContext";
 
 const RootLayout = () => {
     const { getCartQuantity } = useContext(CartContext);

@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
-import { CartContext } from '../context/CartContext';
+import { useState } from 'react';
+import { useCart } from '../hooks/useCart'
 
 const Payment = () => {
-    const { cartItems } = useContext(CartContext);
+    const { cartItems } = useCart();
 
     const [formData, setFormData] = useState({
         customerFirstName: '',
