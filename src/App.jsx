@@ -1,14 +1,30 @@
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
 import './App.css'
 import Products from './components/Products'
-import Payment from './components/Payment'
+import Cart from './components/Cart'
+import RootLayout from './layout/RootLayout'
 import { CartProvider } from './context/CartContext';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <Products /> },
+      { path: "cart", element: <Cart /> }
+    ],
+  },
+]);
 
 function App() {
 
   return (
     <CartProvider>
-      <Products/>
-      <Payment/>
+      <RouterProvider router={router} />
     </CartProvider>
   )
 }
