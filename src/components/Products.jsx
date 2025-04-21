@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '../hooks/useCart'
+import axios from 'axios';
 
 
 const Produkty = () => {
@@ -7,9 +8,8 @@ const Produkty = () => {
     const { addToCart } = useCart();
 
     useEffect(() => {
-        fetch('http://localhost:1323/products')
-            .then(res => res.json())
-            .then(data => setProducts(data))
+        axios.get('http://localhost:1323/products')
+            .then(res => setProducts(res.data))
             .catch(err => console.error(err));
     }, []);
 

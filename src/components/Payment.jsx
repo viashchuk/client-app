@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useCart } from '../hooks/useCart'
+import axios from 'axios';
 
 const Payment = () => {
-    const { cartItems } = useCart();
+    const { cartItems, clearCart } = useCart();
 
     const [formData, setFormData] = useState({
         customerFirstName: '',
@@ -28,16 +29,9 @@ const Payment = () => {
             }))
         };
 
-        fetch('http://localhost:1323/orders', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(order),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                alert("Ok");
-            })
-            .catch((err) => console.error(err));
+        axios.post('http://localhost:1323/orders', order)
+        .then(res => { clearCart(); })
+        .catch(err => console.error(err));
     };
 
     return (
