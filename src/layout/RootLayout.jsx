@@ -20,13 +20,14 @@ const RootLayout = () => {
                         <span className="bg-black rounded-xl w-10 h-10 flex items-center justify-center relative">
                             <img src={cartIcon} className="w-5 relative" alt="Cart" />
                             {getCartQuantity() > 0 &&
-                                <span className="absolute -top-1.5 -right-1.5 bg-primary w-5 h-5 flex items-center justify-center rounded-full text-white text-sm">
+                                <span className="absolute -top-1.5 -right-1.5 bg-primary w-5 h-5 flex items-center justify-center rounded-full text-white text-sm"
+                                    data-testid="cart-quantity">
                                     {getCartQuantity()}
                                 </span>
                             } 
                             <span></span>
                         </span>
-                        <span>{getCartTotal()} <span className="text-sm font-normal">zł</span></span>
+                        <span data-testid="cart-total">{getCartTotal()} <span className="text-sm font-normal">zł</span></span>
                     </Link>
                 </div>
             </header>

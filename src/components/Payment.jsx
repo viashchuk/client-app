@@ -40,21 +40,21 @@ const Payment = () => {
 
             <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-2 gap-6">
                 <div>
-                    <label for="customrFirstName" class="font-medium text-[#484545] mb-2 block">Imię</label>
-                    <input name="customrFirstName" placeholder="First Name" onChange={handleChange} className="form-input" />
+                    <label htmlFor="customrFirstName" className="font-medium text-[#484545] mb-2 block">Imię</label>
+                    <input name="customrFirstName" id="customrFirstName" placeholder="Imię" onChange={handleChange} className="form-input" />
                 </div>
                 <div>
-                    <label for="customerLastName" class="font-medium text-[#484545] mb-2 block">Nazwisko</label>
-                    <input name="customerLastName" placeholder="Last Name" onChange={handleChange} className="form-input" />
+                    <label htmlFor="customerLastName" className="font-medium text-[#484545] mb-2 block">Nazwisko</label>
+                    <input name="customerLastName" id="customerLastName" placeholder="Nazwisko" onChange={handleChange} className="form-input" />
                 </div>
                 <div className="col-span-2">
-                    <label for="customerEmail" class="font-medium text-[#484545] mb-2 block">Email</label>
-                    <input name="customerEmail" placeholder="Email" onChange={handleChange} className="form-input" />
+                    <label htmlFor="customerEmail" className="font-medium text-[#484545] mb-2 block">Email</label>
+                    <input name="customerEmail" id="customerEmail" placeholder="Email" onChange={handleChange} className="form-input" />
                 </div>
                 <div className="col-span-2">
-                    <label for="cardNumber" class="font-medium text-[#484545] mb-2 block">Dane karty</label>
+                    <label htmlFor="cardNumber" className="font-medium text-[#484545] mb-2 block">Dane karty</label>
                     <div className="flex gap-3">
-                        <input name="cardNumber" placeholder="Card number" onChange={handleChange} className="form-input" />
+                        <input name="cardNumber" id="cardNumber" placeholder="Numer karty" onChange={handleChange} className="form-input" />
                         <input name="expiryMonth" placeholder="Month (MM)" onChange={handleChange} className="form-input" />
                         <input name="expiryYear" placeholder="Year (YY)" onChange={handleChange} className="form-input" />
                         <input name="cvc" placeholder="CVC" onChange={handleChange} className="form-input" />
