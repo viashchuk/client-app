@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { useCart } from '../hooks/useCart'
-import axios from 'axios';
+import axios from 'axios'
 
-const Payment = () => {
-    const { cartItems, clearCart } = useCart();
+const Payment = ({ onOrderCreated }) => {
+    const { cartItems, clearCart } = useCart()
 
     const [formData, setFormData] = useState({
         customerFirstName: '',
@@ -30,7 +30,10 @@ const Payment = () => {
         };
 
         axios.post('http://localhost:1323/orders', order)
-        .then(res => { clearCart(); })
+        .then(res => { 
+            clearCart()
+            onOrderCreated(res.data)
+        })
         .catch(err => console.error(err));
     };
 
@@ -40,8 +43,8 @@ const Payment = () => {
 
             <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-2 gap-6">
                 <div>
-                    <label htmlFor="customrFirstName" className="font-medium text-[#484545] mb-2 block">Imię</label>
-                    <input name="customrFirstName" id="customrFirstName" placeholder="Imię" onChange={handleChange} className="form-input" />
+                    <label htmlFor="customerFirstName" className="font-medium text-[#484545] mb-2 block">Imię</label>
+                    <input name="customerFirstName" id="customerFirstName" placeholder="Imię" onChange={handleChange} className="form-input" />
                 </div>
                 <div>
                     <label htmlFor="customerLastName" className="font-medium text-[#484545] mb-2 block">Nazwisko</label>
