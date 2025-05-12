@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useCart } from '../hooks/useCart'
 import axios from 'axios'
+import PropTypes from 'prop-types'
+
 
 const Payment = ({ onOrderCreated }) => {
     const { cartItems, clearCart } = useCart()
@@ -30,11 +32,11 @@ const Payment = ({ onOrderCreated }) => {
         };
 
         axios.post('http://localhost:1323/orders', order)
-        .then(res => { 
-            clearCart()
-            onOrderCreated(res.data)
-        })
-        .catch(err => console.error(err));
+            .then(res => {
+                clearCart()
+                onOrderCreated(res.data)
+            })
+            .catch(err => console.error(err));
     };
 
     return (
@@ -64,13 +66,17 @@ const Payment = ({ onOrderCreated }) => {
                     </div>
                 </div>
                 <button type="button"
-                        onClick={handleSubmit}                  
-                        className="col-span-2 rounded-xl bg-primary text-white font-medium w-full py-3 text-center cursor-pointer transition duration-200 hover:bg-primary hover:text-white">
-                            Kupić
+                    onClick={handleSubmit}
+                    className="col-span-2 rounded-xl bg-[#fc6a32] text-white font-medium w-full py-3 text-center cursor-pointer transition duration-200 hover:bg-[#fc6a32] hover:text-white">
+                    Kupić
                 </button>
             </form>
         </div>
     );
 };
 
-export default Payment;
+export default Payment
+
+Payment.propTypes = {
+    onOrderCreated: PropTypes.func.isRequired
+}

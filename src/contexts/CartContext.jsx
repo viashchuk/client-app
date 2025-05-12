@@ -1,4 +1,6 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useMemo, useCallback } from 'react'
+import PropTypes from 'prop-types'
+
 
 export const CartContext = createContext({
     cartItems: [],
@@ -7,60 +9,75 @@ export const CartContext = createContext({
     getCartTotal: () => { },
     getCartQuantity: () => { },
     clearCart: () => { }
-});
+})
 
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState([])
 
-    const addToCart = (item) => {
-        const isItemInCart = cartItems.find((cartItem) => cartItem.ID === item.ID);
+    const addToCart = useCallback((item) => {
+        setCartItems((prevItems) => {
+            const isItemInCart = prevItems.find((cartItem) => cartItem.ID === item.ID)
 
-        if (isItemInCart) {
-            setCartItems(
-                cartItems.map((cartItem) =>
+            if (isItemInCart) {
+                return prevItems.map((cartItem) =>
                     cartItem.ID === item.ID
                         ? { ...cartItem, quantity: cartItem.quantity + 1 }
                         : cartItem
                 )
-            );
-        } else {
-            setCartItems([...cartItems, { ...item, quantity: 1 }]);
-        }
-    };
+            } else {
+                return [...prevItems, { ...item, quantity: 1 }]
+            }
+        })
+    }, [])
 
-    const removeFromCart = (item) => {
-        const isItemInCart = cartItems.find((cartItem) => cartItem.ID === item.ID);
+    const removeFromCart = useCallback((item) => {
+        setCartItems((prevItems) => {
+            const isItemInCart = prevItems.find((cartItem) => cartItem.ID === item.ID)
 
-        if (isItemInCart.quantity === 1) {
-            setCartItems(cartItems.filter((cartItem) => cartItem.ID !== item.ID));
-        } else {
-            setCartItems(
-                cartItems.map((cartItem) =>
+            if (!isItemInCart) return prevItems
+
+            if (isItemInCart.quantity === 1) {
+                return prevItems.filter((cartItem) => cartItem.ID !== item.ID)
+            } else {
+                return prevItems.map((cartItem) =>
                     cartItem.ID === item.ID
                         ? { ...cartItem, quantity: cartItem.quantity - 1 }
                         : cartItem
                 )
-            );
-        }
-    };
+            }
+        })
+    }, [])
 
-    const clearCart = () => {
-        setCartItems([]);
-    };
+    const clearCart = useCallback(() => {
+        setCartItems([])
+    }, [])
 
-    const getCartTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    };
+    const getCartTotal = useCallback(() => {
+        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+    }, [cartItems])
 
-    const getCartQuantity = () => {
-        return cartItems.reduce((total, item) => total + item.quantity, 0);
-    };
+    const getCartQuantity = useCallback(() => {
+        return cartItems.reduce((total, item) => total + item.quantity, 0)
+    }, [cartItems])
+
+    const value = useMemo(() => ({
+        cartItems,
+        addToCart,
+        removeFromCart,
+        getCartTotal,
+        getCartQuantity,
+        clearCart
+    }), [cartItems, addToCart, removeFromCart, getCartTotal, getCartQuantity, clearCart])
 
     return (
         <CartContext.Provider
-            value={{ cartItems, addToCart, removeFromCart, getCartTotal, getCartQuantity, clearCart }}
+            value={value}
         >
             {children}
         </CartContext.Provider>
-    );
-};
+    )
+}
+
+CartProvider.propTypes = {
+    children: PropTypes.node.isRequired
+}

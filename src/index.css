@@ -17,10 +17,7 @@ body {
   margin: 0;
 }
 
-@theme {
-  --color-primary: #fc6a32;
-}
 
 .form-input {
-  @apply border border-gray-300 bg-white rounded-2xl pl-4 pr-10 py-3.5 w-full shadow-xs leading-normal text-gray-900 focus:outline-none focus:border-primary focus:outline-4 focus:outline-primary focus:outline-offset-0;
+  @apply border border-gray-300 bg-white rounded-2xl pl-4 pr-10 py-3.5 w-full shadow-xs leading-normal text-gray-900 focus:outline-none focus:border-[#fc6a32] focus:outline-4 focus:outline-[#fc6a32] focus:outline-offset-0;
 }

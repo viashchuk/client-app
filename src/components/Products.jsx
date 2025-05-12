@@ -35,7 +35,7 @@ const Produkty = () => {
                     const quantity = getItemQuantity(product.ID)
                     
                     return (
-                    <li key={product.ID} className="border border-primary p-2 rounded-xl">
+                    <li key={product.ID} className="border border-[#fc6a32] p-2 rounded-xl">
                         <img src={`${apiUrl}/${product.image_url}`} alt={product.title} className="w-full h-auto object-cover rounded-md bg-gray-100 mb-4" />
                         <div className="flex items-center justify-between mb-4">
                             <h2 className="font-medium text-lg">{product.title}</h2>
@@ -44,13 +44,13 @@ const Produkty = () => {
                         {quantity > 0 ? (
                             <div className="flex items-center justify-between gap-4">
                                 <button onClick={() => removeFromCart(product)} 
-                                className="cursor-pointer w-10 h-10 rounded-md bg-orange-100 transition duration-200 hover:bg-primary flex items-center justify-center"
+                                className="cursor-pointer w-10 h-10 rounded-md bg-orange-100 transition duration-200 hover:bg-[#fc6a32] flex items-center justify-center"
                                 data-testid="delete-item-from-cart">
                                     <img src={minusIcon} className="w-5 relative" alt="Delete from cart" />
                                 </button>
                                 <span className="grow text-center" data-testid="item-quantity-in-cart">{quantity}</span>
                                 <button onClick={() => addToCart(product)}
-                                 className="cursor-pointer w-10 h-10 rounded-md bg-orange-100 transition duration-200 hover:bg-primary flex items-center justify-center"
+                                 className="cursor-pointer w-10 h-10 rounded-md bg-orange-100 transition duration-200 hover:bg-[#fc6a32] flex items-center justify-center"
                                  data-testid="add-item-to-cart">
                                     <img src={plusIcon} className="w-5 relative" alt="Add to cart" />
                                 </button>
@@ -58,7 +58,7 @@ const Produkty = () => {
                         ) : (
                             <button
                                 onClick={() => addToCart(product)}
-                                className="rounded-md bg-orange-100 text-primary font-medium w-full py-2 text-center cursor-pointer transition duration-200 hover:bg-primary hover:text-white"
+                                className="rounded-md bg-orange-100 text-[#fc6a32] font-medium w-full py-2 text-center cursor-pointer transition duration-200 hover:bg-[#fc6a32] hover:text-white"
                                 data-testid="add-to-cart"
                             >
                                 Dodać do koszyka
