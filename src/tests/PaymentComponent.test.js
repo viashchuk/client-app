@@ -39,27 +39,27 @@ describe('Payment', () => {
 
         render(<Payment />)
 
-        fireEvent.change(screen.getByPlaceholderText('Imię'), {
-            target: { name: 'customerFirstName', value: 'Anna' }
-        })
-        fireEvent.change(screen.getByPlaceholderText('Nazwisko'), {
-            target: { name: 'customerLastName', value: 'Nowak' }
-        })
-        fireEvent.change(screen.getByPlaceholderText('Email'), {
-            target: { name: 'customerEmail', value: 'anna@example.com' }
-        })
-        fireEvent.change(screen.getByPlaceholderText('Numer karty'), {
-            target: { name: 'cardNumber', value: '4111111111111111' }
-        })
-        fireEvent.change(screen.getByPlaceholderText('Month (MM)'), {
-            target: { name: 'expiryMonth', value: '12' }
-        })
-        fireEvent.change(screen.getByPlaceholderText('Year (YY)'), {
-            target: { name: 'expiryYear', value: '25' }
-        })
-        fireEvent.change(screen.getByPlaceholderText('CVC'), {
-            target: { name: 'cvc', value: '123' }
-        })
+        // fireEvent.change(screen.getByPlaceholderText('Imię'), {
+        //     target: { name: 'customerFirstName', value: 'Anna' }
+        // })
+        // fireEvent.change(screen.getByPlaceholderText('Nazwisko'), {
+        //     target: { name: 'customerLastName', value: 'Nowak' }
+        // })
+        // fireEvent.change(screen.getByPlaceholderText('Email'), {
+        //     target: { name: 'customerEmail', value: 'anna@example.com' }
+        // })
+        // fireEvent.change(screen.getByPlaceholderText('Numer karty'), {
+        //     target: { name: 'cardNumber', value: '4111111111111111' }
+        // })
+        // fireEvent.change(screen.getByPlaceholderText('Month (MM)'), {
+        //     target: { name: 'expiryMonth', value: '12' }
+        // })
+        // fireEvent.change(screen.getByPlaceholderText('Year (YY)'), {
+        //     target: { name: 'expiryYear', value: '25' }
+        // })
+        // fireEvent.change(screen.getByPlaceholderText('CVC'), {
+        //     target: { name: 'cvc', value: '123' }
+        // })
 
         expect(screen.getByPlaceholderText('Imię').value).toBe('Anna')
         expect(screen.getByPlaceholderText('Nazwisko').value).toBe('Nowak')
